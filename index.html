@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Julio Hidalgo - Developer & Automation Specialist</title>
+
+    <!-- CSS & Fonts -->
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Animation & Lightbox Libraries -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css"
+    />
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
+
+  <body>
+    <!-- =================================================================== -->
+    <!-- Navigation Bar                                                      -->
+    <!-- =================================================================== -->
+    <nav>
+      <div class="container">
+        <div class="logo">Julio Hidalgo</div>
+        <ul class="nav-links">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- =================================================================== -->
+    <!-- Hero Section                                                        -->
+    <!-- =================================================================== -->
+    <header class="hero">
+      <div class="container">
+        <h1>Web Developer & Automation Specialist</h1>
+        <p class="tagline" id="hero-tagline"></p>
+        <div class="social-links">
+          <a href="https://github.com/Julio0795" target="_blank"
+            ><i class="fab fa-github"></i> GitHub</a
+          >
+          <a
+            href="https://www.linkedin.com/in/julio-hidalgo-9b6790257/"
+            target="_blank"
+            ><i class="fab fa-linkedin"></i> LinkedIn</a
+          >
+          <a href="#" target="_blank"
+            ><i class="fa-solid fa-briefcase"></i> Upwork</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- =================================================================== -->
+    <!-- Main Content                                                        -->
+    <!-- =================================================================== -->
+    <main class="container">
+      <!-- Projects Section -->
+      <section id="projects">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+          <!-- Project 1 -->
+          <div class="project-card" data-aos="fade-up">
+            <a href="Project-1.png" class="project-image-link">
+              <img src="Project-1.png" alt="Trading Bot Animation" />
+            </a>
+            <h3>Real-Time Trade Signal Copier</h3>
+            <p>
+              An automated desktop application that parses trade signals from
+              Telegram and executes them instantly on the cTrader platform.
+            </p>
+            <div class="tech-stack">
+              <span>Python</span><span>JavaScript</span><span>cTrader API</span
+              ><span>Automation</span>
+            </div>
+            <div class="project-links has-buttons">
+              <a
+                href="https://github.com/Julio0795/Telegram-Ctrader-SignalCopier/tree/main/COPIER"
+                target="_blank"
+                class="btn"
+                >View Code</a
+              >
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+            <a href="Project-2.png" class="project-image-link">
+              <img src="Project-2.png" alt="Conversation Bot Animation" />
+            </a>
+            <h3>AI-Powered WhatsApp Concierge</h3>
+            <p>
+              A smart bot using the ChatGPT API to manage WhatsApp
+              conversations, drafting intelligent replies for user approval.
+            </p>
+            <div class="tech-stack">
+              <span>Python</span><span>ChatGPT API</span><span>JavaScript</span>
+            </div>
+            <div class="project-links has-buttons">
+              <a
+                href="https://github.com/Julio0795/CHAT-BOT/tree/main/Whatshapp-bot"
+                target="_blank"
+                class="btn"
+                >View Code</a
+              >
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+            <a href="Project-3.png" class="project-image-link">
+              <img src="Project-3.png" alt="AI Story Generator Animation" />
+            </a>
+            <h3>AI-Powered Interactive Story Generator</h3>
+            <p>
+              A cinematic web app where users collaboratively create unique,
+              illustrated stories with generative AI.
+            </p>
+            <div class="tech-stack">
+              <span>Next.js</span><span>OpenAI API</span><span>TypeScript</span
+              ><span>Framer Motion</span>
+            </div>
+            <div class="project-links has-buttons">
+              <a
+                href="https://github.com/Julio0795/AI-Story-generator"
+                target="_blank"
+                class="btn"
+                >View Code</a
+              >
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+            <a href="Project-4.png" class="project-image-link">
+              <img
+                src="Project-4.png"
+                alt="Power Automate Project"
+                class="image-contain"
+              />
+            </a>
+            <h3>Automated Document Processing Pipeline</h3>
+            <p>
+              An automation that monitors an Exchange server, extracts data from
+              PDF attachments using OCR, and intelligently files the documents.
+            </p>
+            <div class="tech-stack">
+              <span>Power Automate</span><span>OCR</span><span>MS Exchange</span
+              ><span>BPA</span>
+            </div>
+            <!-- No action buttons for internal tool -->
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about">
+        <h2>About Me</h2>
+        <p>
+          I am a passionate developer with a knack for automation and
+          problem-solving. I specialize in turning complex requirements into
+          simple, efficient, and scalable software solutions. Whether it's
+          building a smart chatbot or a high-performance web page, I am driven
+          by the challenge of creating tools that make a tangible impact.
+        </p>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="testimonials">
+        <div class="container">
+          <h2>What My Clients Say</h2>
+
+          <!-- Testimonials Carousel Container -->
+          <div class="testimonials-container">
+            <!-- Navigation Buttons -->
+            <button
+              class="testimonial-nav prev-btn"
+              aria-label="Previous testimonial"
+            >
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button
+              class="testimonial-nav next-btn"
+              aria-label="Next testimonial"
+            >
+              <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Testimonials Wrapper -->
+            <div class="testimonials-wrapper">
+              <!-- Coming Soon Card -->
+              <div class="testimonial-card active">
+                <div class="testimonial-content coming-soon">
+                  <div class="coming-soon-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <blockquote>
+                    "I'm excited to work with clients and build meaningful
+                    relationships. While I'm new to client testimonials, I bring
+                    fresh energy, cutting-edge skills, and a commitment to
+                    delivering exceptional results. Let's create something
+                    amazing together!"
+                  </blockquote>
+                  <figcaption>
+                    <strong>Ready for New Opportunities</strong>
+                    <span>Building the future, one project at a time</span>
+                  </figcaption>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =================================================================== -->
+    <!-- Footer & Contact Section                                            -->
+    <!-- =================================================================== -->
+    <footer id="contact">
+      <div class="container">
+        <h2>Get In Touch</h2>
+        <p>
+          Have a project, an idea, or just want to connect? Send me a message!
+        </p>
+
+        <!-- Replace with your actual Formspree URL -->
+        <form
+          action="https://formspree.io/f/your_unique_id"
+          method="POST"
+          class="contact-form"
+        >
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              required
+            />
+          </div>
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            rows="5"
+            required
+          ></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </footer>
+
+    <!-- =================================================================== -->
+    <!-- JavaScript Libraries                                                -->
+    <!-- =================================================================== -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
+
+    <!-- Your Custom Logic (Must be last) -->
+    <script src="script.js"></script>
+  </body>
+</html>
