@@ -79,13 +79,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to update the carousel display
     function updateCarousel() {
-      // Remove active class from all cards and dots
+      // Remove active class from all cards
       testimonialCards.forEach((card) => card.classList.remove("active"));
-      dots.forEach((dot) => dot.classList.remove("active"));
+
+      // Remove active class from all dots, if dots exist
+      if (dots.length > 0) {
+        dots.forEach((dot) => dot.classList.remove("active"));
+      }
 
       // Add active class to current slide
       testimonialCards[currentSlide].classList.add("active");
-      dots[currentSlide].classList.add("active");
+
+      // Add active class to current dot, if dots exist
+      if (dots.length > 0) {
+        dots[currentSlide].classList.add("active");
+      }
 
       // Update wrapper transform for smooth transition
       testimonialsWrapper.style.transform = `translateX(-${
@@ -112,13 +120,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Event listeners for navigation buttons
-    if (nextBtn) nextBtn.addEventListener("click", nextSlide);
-    if (prevBtn) prevBtn.addEventListener("click", prevSlide);
+    if (totalSlides > 1) {
+      if (nextBtn) nextBtn.style.display = "flex"; // Show if more than one slide
+      if (prevBtn) prevBtn.style.display = "flex"; // Show if more than one slide
+      if (nextBtn) nextBtn.addEventListener("click", nextSlide);
+      if (prevBtn) prevBtn.addEventListener("click", prevSlide);
+    }
 
-    // Event listeners for dots
-    dots.forEach((dot, index) => {
-      dot.addEventListener("click", () => goToSlide(index));
-    });
+    // Event listeners for dots, if dots exist and there's more than one slide
+    if (dots.length > 0 && totalSlides > 1) {
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => goToSlide(index));
+      });
+    }
 
     // Keyboard navigation support
     document.addEventListener("keydown", function (e) {
@@ -146,6 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (mobileMenu && navLinks) {
     mobileMenu.addEventListener("click", () => {
+      console.log("Burger menu clicked!");
       navLinks.classList.toggle("active");
       mobileMenu.classList.toggle("active");
     });
