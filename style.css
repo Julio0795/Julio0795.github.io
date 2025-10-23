@@ -115,6 +115,8 @@ nav .logo {
 
 nav .nav-links {
   list-style: none;
+  display: flex; /* Ensure horizontal display on desktop */
+  flex-direction: row; /* Explicitly set row direction */
   gap: 1.5rem;
 }
 
@@ -631,7 +633,7 @@ footer p {
 
   nav .nav-links {
     display: none; /* Hidden by default on small screens */
-    flex-direction: column;
+    flex-direction: column; /* Vertical alignment for mobile */
     width: 100%;
     position: absolute;
     top: 60px; /* Adjust based on your nav height */
@@ -659,8 +661,9 @@ footer p {
     text-align: center;
   }
 
+  /* .menu-toggle is only displayed in the media query */
   .menu-toggle {
-    display: flex;
+    display: flex; /* Show burger icon on small screens */
   }
 
   .project-grid {
