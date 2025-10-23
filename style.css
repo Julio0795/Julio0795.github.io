@@ -86,6 +86,20 @@ nav .logo {
   font-weight: 700;
 }
 
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.menu-toggle .bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
 nav .nav-links {
   list-style: none;
   display: flex;
@@ -686,6 +700,34 @@ footer p {
 
   .contact-form {
     max-width: 100%;
+  }
+
+  nav .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px; /* Adjust based on your nav height */
+    left: 0;
+    background: var(--bg-light);
+    border-top: 1px solid var(--border-color);
+    padding: 1rem 0;
+    gap: 0.5rem;
+    z-index: 99;
+  }
+
+  nav .nav-links.active {
+    display: flex;
+  }
+
+  nav .nav-links li a {
+    padding: 0.5rem 1rem;
+    display: block;
+    text-align: center;
+  }
+
+  .menu-toggle {
+    display: flex;
   }
 }
 
