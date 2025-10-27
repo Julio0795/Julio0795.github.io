@@ -301,6 +301,7 @@ nav a:hover {
   text-align: center;
 }
 
+/* Footer & Contact Section */
 footer {
   background: var(--bg-light);
   text-align: center;
@@ -310,6 +311,31 @@ footer {
 
 footer p {
   margin-bottom: 1.5rem;
+}
+
+.footer-social-links {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  color: var(--text-color); /* Changed to text-color for better contrast */
+}
+
+.footer-social-links a:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
 }
 
 /* --- Contact Form --- */
