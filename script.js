@@ -39,63 +39,116 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // --- 4. Project Media Reveal System & Lightbox ---
+  // --- 4. Project Media Reveal System (Logo-to-Fullscreen) ---
   document.querySelectorAll(".project-media-wrapper").forEach((wrapper) => {
-    const imageLink = wrapper.querySelector(".project-image-link");
-    const imageUrl = imageLink.getAttribute("href");
-    let isRevealed = false;
-
     // Add click handler to the wrapper
     wrapper.addEventListener("click", function (e) {
       e.preventDefault();
+      e.stopPropagation();
 
-      if (!isRevealed) {
-        // First click: Reveal the dashboard
-        wrapper.classList.add("is-revealed");
-        isRevealed = true;
+      // Get the dashboard image source from this specific card
+      const dashboardImage = wrapper.querySelector(".project-dashboard");
+      if (!dashboardImage) return;
 
-        // Camera Flash effect: white overlay flash for 0.1s
-        const cameraFlash = document.createElement("div");
-        cameraFlash.style.cssText = `
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: #ffffff;
-          pointer-events: none;
-          z-index: 15;
-          opacity: 1;
-          transition: opacity 0.1s ease-out;
-        `;
+      const imageSrc = dashboardImage.getAttribute("src");
+      if (!imageSrc) return;
 
-        wrapper.appendChild(cameraFlash);
-
-        // Fade out the flash after 0.1s
-        setTimeout(() => {
-          cameraFlash.style.opacity = "0";
-          // Remove element after transition completes
-          setTimeout(() => {
-            if (cameraFlash.parentNode) {
-              cameraFlash.parentNode.removeChild(cameraFlash);
-            }
-          }, 100);
-        }, 10);
-      } else {
-        // Second click: Open lightbox
-        const instance = basicLightbox.create(`<img src="${imageUrl}">`, {
+      // Create fullscreen lightbox with fade-in effect
+      const instance = basicLightbox.create(
+        `<div class="lightbox-container" style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.95);">
+          <img src="${imageSrc}" style="max-width: 95%; max-height: 95%; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);" alt="Project Dashboard" />
+        </div>`,
+        {
           onShow: (instance) => {
-            // Create a button element
-            const closeButton = document.createElement("button");
-            closeButton.innerHTML = "×";
-            closeButton.className = "lightbox-close-button";
-            closeButton.onclick = instance.close;
-            instance.element().appendChild(closeButton);
-          },
-        });
+            // Add fade-in animation
+            const element = instance.element();
+            element.style.opacity = "0";
+            element.style.transition = "opacity 0.3s ease-in";
+            
+            // Trigger fade-in
+            setTimeout(() => {
+              element.style.opacity = "1";
+            }, 10);
 
-        instance.show();
-      }
+            // Create and add close button
+            const container = element.querySelector(".lightbox-container");
+            if (container) {
+              const closeButton = document.createElement("button");
+              closeButton.className = "lightbox-close-button";
+              closeButton.innerHTML = "×";
+              closeButton.style.cssText = `
+                position: fixed;
+                top: 2rem;
+                right: 2rem;
+                background: rgba(0, 0, 0, 0.7);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                color: white;
+                font-size: 2rem;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                z-index: 10000;
+                line-height: 1;
+                padding: 0;
+                margin: 0;
+              `;
+
+              // Add click handler
+              closeButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                instance.close();
+              });
+              
+              // Hover effect for close button
+              closeButton.addEventListener("mouseenter", () => {
+                closeButton.style.background = "rgba(255, 255, 255, 0.2)";
+                closeButton.style.borderColor = "rgba(255, 255, 255, 0.6)";
+                closeButton.style.transform = "scale(1.1)";
+              });
+              
+              closeButton.addEventListener("mouseleave", () => {
+                closeButton.style.background = "rgba(0, 0, 0, 0.7)";
+                closeButton.style.borderColor = "rgba(255, 255, 255, 0.3)";
+                closeButton.style.transform = "scale(1)";
+              });
+
+              // Append to body instead of container to ensure it's always on top
+              document.body.appendChild(closeButton);
+
+              // Store reference to remove on close
+              instance._closeButton = closeButton;
+            }
+
+            // Close on Escape key
+            const escapeHandler = function(e) {
+              if (e.key === "Escape") {
+                instance.close();
+              }
+            };
+            document.addEventListener("keydown", escapeHandler);
+            instance._escapeHandler = escapeHandler;
+          },
+          onClose: (instance) => {
+            // Remove close button if it exists
+            if (instance._closeButton && instance._closeButton.parentNode) {
+              instance._closeButton.parentNode.removeChild(instance._closeButton);
+            }
+            // Remove escape handler
+            if (instance._escapeHandler) {
+              document.removeEventListener("keydown", instance._escapeHandler);
+            }
+          },
+        }
+      );
+
+      // Show the lightbox
+      instance.show();
     });
   });
 
