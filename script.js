@@ -1,6 +1,47 @@
 // File: script.js
 
+// --- Lenis Smooth Scroll Initialization ---
+const lenis = new Lenis({
+  lerp: 0.1,
+  smoothTouch: false
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
 document.addEventListener("DOMContentLoaded", function () {
+  // Detect mobile device
+  const isMobile = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768;
+
+  // --- 0. Vanta.js NET Background Initialization ---
+  try {
+    if (typeof VANTA !== 'undefined' && VANTA.NET) {
+      // Optimize for mobile: reduce points and spacing to save battery/CPU
+      const vantaConfig = {
+        el: "#vanta-canvas",
+        mouseControls: !isMobile,
+        touchControls: !isMobile,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x00aaff,
+        backgroundColor: 0x050505,
+        points: isMobile ? 6.00 : 12.00,
+        maxDistance: isMobile ? 15.00 : 22.00,
+        spacing: isMobile ? 20.00 : 16.00
+      };
+      VANTA.NET(vantaConfig);
+    }
+  } catch (e) {
+    console.error("VANTA.NET initialization failed:", e);
+  }
+
   // --- 1. AOS (Animate On Scroll) Initialization ---
   try {
     AOS.init({ duration: 800, once: true, offset: 100 });
@@ -244,12 +285,47 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- 6. Mobile Menu Toggle ---
   const mobileMenu = document.getElementById("mobile-menu");
   const navLinks = document.querySelector(".nav-links");
+  const body = document.body;
 
   if (mobileMenu && navLinks) {
+    // Function to open menu
+    function openMenu() {
+      navLinks.classList.add("active");
+      mobileMenu.classList.add("active");
+      body.classList.add("menu-open");
+      body.style.overflow = "hidden"; // Lock scroll
+    }
+
+    // Function to close menu
+    function closeMenu() {
+      navLinks.classList.remove("active");
+      mobileMenu.classList.remove("active");
+      body.classList.remove("menu-open");
+      body.style.overflow = ""; // Restore scroll
+    }
+
+    // Toggle menu on click
     mobileMenu.addEventListener("click", () => {
-      console.log("Burger menu clicked!");
-      navLinks.classList.toggle("active");
-      mobileMenu.classList.toggle("active");
+      if (navLinks.classList.contains("active")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    // Close menu when nav links are clicked
+    const navLinkItems = navLinks.querySelectorAll("a");
+    navLinkItems.forEach((link) => {
+      link.addEventListener("click", () => {
+        closeMenu();
+      });
+    });
+
+    // Close menu when clicking outside (on the blur overlay)
+    navLinks.addEventListener("click", (e) => {
+      if (e.target === navLinks) {
+        closeMenu();
+      }
     });
   }
 
@@ -350,5 +426,215 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.key === "Escape" && requestModal && requestModal.classList.contains("active")) {
       closeModal();
     }
+  });
+
+  // --- 8. Custom Cursor System (Desktop only) ---
+  if (!isMobile) {
+    // Create custom cursor element
+    const customCursor = document.createElement("div");
+    customCursor.className = "custom-cursor";
+    document.body.appendChild(customCursor);
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let cursorX = mouseX;
+    let cursorY = mouseY;
+    let isHovering = false;
+
+    // Initialize cursor position
+    customCursor.style.left = cursorX + "px";
+    customCursor.style.top = cursorY + "px";
+
+    // Track mouse position
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // Smooth cursor follow animation using requestAnimationFrame
+    function animateCursor() {
+      // Calculate distance between cursor and mouse
+      const dx = mouseX - cursorX;
+      const dy = mouseY - cursorY;
+      
+      // Apply lag (ease out effect) - adjust the multiplier (0.15) for more/less lag
+      cursorX += dx * 0.15;
+      cursorY += dy * 0.15;
+      
+      // Update cursor position
+      customCursor.style.left = cursorX + "px";
+      customCursor.style.top = cursorY + "px";
+      
+      requestAnimationFrame(animateCursor);
+    }
+
+    // Start animation
+    animateCursor();
+
+    // Elements that should trigger cursor expansion
+    const hoverElements = document.querySelectorAll(
+      "button, .btn, .project-logo, a, .project-card, .request-card, .nav-links a"
+    );
+
+    hoverElements.forEach((element) => {
+      element.addEventListener("mouseenter", () => {
+        isHovering = true;
+        customCursor.classList.add("expanded");
+      });
+
+      element.addEventListener("mouseleave", () => {
+        isHovering = false;
+        customCursor.classList.remove("expanded");
+      });
+    });
+
+    // Hide default cursor on desktop
+    document.body.style.cursor = "none";
+  }
+
+  // --- 9. Magnetic Button Effect ---
+  const magneticButtons = document.querySelectorAll(
+    ".btn-request-access, .hero-btns .btn, .social-links a"
+  );
+
+  magneticButtons.forEach((button) => {
+    let isActive = false;
+
+    // Get button center coordinates
+    function getButtonCenter() {
+      const rect = button.getBoundingClientRect();
+      return {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      };
+    }
+
+    // Calculate distance between two points
+    function getDistance(x1, y1, x2, y2) {
+      return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+
+    // Handle mouse move
+    function handleMouseMove(e) {
+      const buttonCenter = getButtonCenter();
+      const distance = getDistance(
+        e.clientX,
+        e.clientY,
+        buttonCenter.x,
+        buttonCenter.y
+      );
+
+      if (distance < 50) {
+        isActive = true;
+        // Calculate direction vector
+        const dx = e.clientX - buttonCenter.x;
+        const dy = e.clientY - buttonCenter.y;
+
+        // Normalize and scale (max 15px)
+        const magnitude = Math.min(distance / 50, 1);
+        const maxOffset = 15;
+        const offsetX = (dx / distance) * maxOffset * magnitude;
+        const offsetY = (dy / distance) * maxOffset * magnitude;
+
+        // Apply transform
+        button.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        button.style.transition = "none";
+      } else if (isActive) {
+        // Reset when mouse leaves the magnetic zone
+        isActive = false;
+        button.style.transform = "translate(0, 0)";
+        button.style.transition = "transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)";
+      }
+    }
+
+    // Handle mouse leave
+    function handleMouseLeave() {
+      if (isActive) {
+        isActive = false;
+        button.style.transform = "translate(0, 0)";
+        button.style.transition = "transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)";
+      }
+    }
+
+    // Add event listeners
+    button.addEventListener("mousemove", handleMouseMove);
+    button.addEventListener("mouseleave", handleMouseLeave);
+  });
+
+  // --- 10. GSAP Text Reveal Animation ---
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Function to split text into characters
+    function splitTextIntoChars(element) {
+      const text = element.textContent;
+      const textArray = text.split('');
+      element.textContent = '';
+      
+      textArray.forEach((char, index) => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? '\u00A0' : char; // Use non-breaking space for spaces
+        span.style.display = 'inline-block';
+        element.appendChild(span);
+      });
+    }
+
+    // Find all reveal-text elements
+    const revealTextElements = document.querySelectorAll('.reveal-text');
+
+    revealTextElements.forEach((element) => {
+      // Split text into characters
+      splitTextIntoChars(element);
+
+      // Get all character spans
+      const chars = element.querySelectorAll('span');
+
+      // Set initial state
+      gsap.set(chars, {
+        opacity: 0,
+        y: 50,
+      });
+
+      // Create animation with ScrollTrigger
+      gsap.to(chars, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.05,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none none',
+        },
+      });
+    });
+  }
+
+  // --- 11. Card Glow Effect ---
+  const projectCards = document.querySelectorAll('.project-card');
+
+  projectCards.forEach((card) => {
+    const cardGlow = card.querySelector('.card-glow');
+
+    if (!cardGlow) return;
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      card.style.setProperty('--x', `${x}px`);
+      card.style.setProperty('--y', `${y}px`);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      // Optionally reset to center when mouse leaves
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--x', `${rect.width / 2}px`);
+      card.style.setProperty('--y', `${rect.height / 2}px`);
+    });
   });
 }); // End of 'DOMContentLoaded'
