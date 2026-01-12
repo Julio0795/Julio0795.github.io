@@ -128,7 +128,7 @@
                 <i class="fas fa-compress-alt expand-icon-hide"></i>
               </div>
             </div>
-            <h3>AI Co-Pilot & Interview Assistant</h3>
+            <h3>AI Co-Pilot & Interview Assistant <span class="badge-verified"><i class="fas fa-check-circle"></i> Flagship Project</span></h3>
             <p>
               A high-stakes conversational coach using Deepgram WebSockets for &lt;100ms transcription and GPT-4o Vision for real-time on-screen problem solving. Features "Stealth Mode" and STAR-method story automation. Provides instant, context-aware AI guidance, reducing response latency in technical hurdles and high-pressure negotiations.
             </p>
@@ -136,13 +136,7 @@
               <span>Next.js</span><span>OpenAI GPT-4o</span><span>Deepgram (WebSockets)</span><span>Tailwind CSS</span><span>Zustand</span>
             </div>
             <div class="project-links has-buttons">
-              <a
-                href="https://realtime-guide.vercel.app/"
-                target="_blank"
-                class="btn"
-                aria-label="Test AI Co-Pilot & Interview Assistant live demo"
-                >Live Test</a
-              >
+              <button class="btn btn-request-access" data-project="AI Co-Pilot Assistant">Request Live Demo</button>
             </div>
           </div>
 
@@ -179,6 +173,7 @@
                 aria-label="View Real-Time Trade Signal Copier code on GitHub"
                 >View Code</a
               >
+              <button class="btn btn-request-access" data-project="Real-Time Trade Signal Copier">Private Preview</button>
             </div>
           </div>
 
@@ -214,6 +209,7 @@
                 aria-label="View AI-Powered WhatsApp Concierge code on GitHub"
                 >View Code</a
               >
+              <button class="btn btn-request-access" data-project="AI-Powered WhatsApp Concierge">Private Preview</button>
             </div>
           </div>
 
@@ -249,6 +245,7 @@
                 aria-label="View AI-Powered Interactive Story Generator code on GitHub"
                 >View Code</a
               >
+              <button class="btn btn-request-access" data-project="AI-Powered Interactive Story Generator">Private Preview</button>
             </div>
           </div>
 
@@ -275,7 +272,9 @@
               <span>Power Automate</span><span>OCR</span><span>MS Exchange</span
               ><span>BPA</span>
             </div>
-            <!-- No action buttons for internal tool -->
+            <div class="project-links has-buttons">
+              <button class="btn btn-request-access" data-project="Automated Document Processing Pipeline">Request Live Demo</button>
+            </div>
           </div>
         </div>
       </section>
@@ -366,6 +365,34 @@
         </div>
       </section>
     </main>
+
+    <!-- =================================================================== -->
+    <!-- Request Access Modal                                                -->
+    <!-- =================================================================== -->
+    <div id="request-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-header">
+          <i class="fas fa-lock-alt"></i>
+          <h3>Private Demonstration</h3>
+          <p>This project contains proprietary AI logic. Request a live walkthrough below:</p>
+        </div>
+        <div id="modal-project-name" class="project-name-display"></div>
+        <div class="request-options">
+          <a href="#" id="ws-request" class="request-card whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+            <small>Instant Response</small>
+          </a>
+          <a href="#" id="email-request" class="request-card email">
+            <i class="fas fa-envelope"></i>
+            <span>Email</span>
+            <small>Professional Inquiry</small>
+          </a>
+        </div>
+        <p class="privacy-note"><i class="fas fa-shield-check"></i> Secure & Private Access</p>
+      </div>
+    </div>
 
     <!-- =================================================================== -->
     <!-- Footer & Contact Section                                            -->

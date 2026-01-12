@@ -252,4 +252,103 @@ document.addEventListener("DOMContentLoaded", function () {
       mobileMenu.classList.toggle("active");
     });
   }
+
+  // --- 7. Request Access Modal Functionality ---
+  const requestModal = document.getElementById("request-modal");
+  const modalProjectName = document.getElementById("modal-project-name");
+  const closeModalBtn = document.querySelector(".close-modal");
+  const requestAccessButtons = document.querySelectorAll(".btn-request-access");
+  const whatsappBtn = document.getElementById("ws-request");
+  const emailBtn = document.getElementById("email-request");
+
+  // Function to generate WhatsApp URL with encoded message
+  function generateWhatsAppURL(projectName) {
+    const message = `Hi Julio! I'm interested in a live demonstration of your project: ${projectName}. Please let me know when you're available for a brief walkthrough.`;
+    const encodedMessage = encodeURIComponent(message);
+    return `https://wa.me/50239404618?text=${encodedMessage}`;
+  }
+
+  // Function to generate Email URL with encoded subject and body
+  function generateEmailURL(projectName) {
+    const subject = `Demo Request: ${projectName}`;
+    const body = `Hi Julio,\r\n\r\nI was exploring your portfolio and I am very interested in seeing a live demonstration of "${projectName}".\r\n\r\nLet's connect!`;
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(body);
+    return `mailto:julio.1995.hidalgo@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+  }
+
+  // Function to open modal and set up links
+  function openModal(projectName) {
+    // Update project name display
+    if (modalProjectName) {
+      modalProjectName.textContent = projectName;
+    }
+
+    // Update WhatsApp link with project-specific message
+    if (whatsappBtn) {
+      whatsappBtn.href = generateWhatsAppURL(projectName);
+    }
+
+    // Update Email link with project-specific subject and body
+    if (emailBtn) {
+      emailBtn.href = generateEmailURL(projectName);
+    }
+
+    // Show modal
+    if (requestModal) {
+      requestModal.classList.add("active");
+      document.body.style.overflow = "hidden"; // Prevent background scrolling
+    }
+  }
+
+  // Function to close modal
+  function closeModal() {
+    if (requestModal) {
+      requestModal.classList.remove("active");
+      document.body.style.overflow = ""; // Restore scrolling
+    }
+  }
+
+  // Add click handlers to all request access buttons
+  requestAccessButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      const projectName = button.getAttribute("data-project") || "Project";
+      openModal(projectName);
+    });
+  });
+
+  // Close modal when close button is clicked
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeModal();
+    });
+  }
+
+  // Close modal when clicking outside the modal content
+  if (requestModal) {
+    requestModal.addEventListener("click", (e) => {
+      // Only close if clicking directly on the modal background, not on modal content
+      if (e.target === requestModal) {
+        closeModal();
+      }
+    });
+  }
+
+  // Prevent modal from closing when clicking inside modal content
+  const modalContent = document.querySelector(".modal-content");
+  if (modalContent) {
+    modalContent.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+  }
+
+  // Close modal when Escape key is pressed
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && requestModal && requestModal.classList.contains("active")) {
+      closeModal();
+    }
+  });
 }); // End of 'DOMContentLoaded'
