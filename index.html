@@ -4,6 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Julio Hidalgo - Developer & Automation Specialist</title>
+    <meta
+      name="description"
+      content="Julio Hidalgo - Web Developer & Automation Specialist specializing in Python, AI integration, and custom software solutions."
+    />
+    <meta name="author" content="Julio Hidalgo" />
+    <meta name="keywords" content="web developer, automation specialist, Python, AI integration, custom software, JavaScript, Next.js, automation" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Julio Hidalgo - Developer & Automation Specialist" />
+    <meta
+      property="og:description"
+      content="Web Developer & Automation Specialist specializing in Python, AI integration, and custom software solutions."
+    />
+    <meta property="og:url" content="https://julio0795.github.io" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Julio Hidalgo - Developer & Automation Specialist" />
+    <meta
+      name="twitter:description"
+      content="Web Developer & Automation Specialist specializing in Python, AI integration, and custom software solutions."
+    />
 
     <!-- CSS & Fonts -->
     <link rel="stylesheet" href="style.css" />
@@ -37,7 +60,7 @@
     <nav>
       <div class="container">
         <div class="logo">Julio Hidalgo</div>
-        <div class="menu-toggle" id="mobile-menu">
+        <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
@@ -58,18 +81,24 @@
       <div class="container">
         <h1>Web Developer & Automation Specialist</h1>
         <p class="tagline" id="hero-tagline"></p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="Julio_Hidalgo_Resume.pdf" class="btn btn-secondary" download target="_blank" aria-label="Download Julio Hidalgo Resume PDF">Download Resume</a>
+        </div>
         <div class="social-links">
-          <a href="https://github.com/Julio0795" target="_blank"
+          <a href="https://github.com/Julio0795" target="_blank" aria-label="GitHub Profile"
             ><i class="fab fa-github"></i> GitHub</a
           >
           <a
             href="https://www.linkedin.com/in/julio-hidalgo-9b6790257/"
             target="_blank"
+            aria-label="LinkedIn Profile"
             ><i class="fab fa-linkedin"></i> LinkedIn</a
           >
           <a
             href="https://www.upwork.com/freelancers/~01288e72efa3d30f70?viewMode=1"
             target="_blank"
+            aria-label="Upwork Profile"
             ><i class="fa-solid fa-briefcase"></i> Upwork</a
           >
         </div>
@@ -84,15 +113,51 @@
       <section id="projects">
         <h2>My Projects</h2>
         <div class="project-grid">
+          <!-- Project 5 -->
+          <div class="project-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="project-media-wrapper">
+              <a href="Project-5.png" class="project-image-link">
+                <img src="logo5.png" class="project-logo" alt="AI Co-Pilot Logo" loading="lazy" />
+                <img src="Project-5.png" class="project-dashboard" alt="AI Co-Pilot Dashboard" loading="lazy" />
+              </a>
+              <div class="reveal-hint">
+                <span><i class="fas fa-mouse-pointer"></i> UNVEIL PROJECT DATA</span>
+              </div>
+            </div>
+            <h3>AI Co-Pilot & Interview Assistant</h3>
+            <p>
+              A high-stakes conversational coach using Deepgram WebSockets for &lt;100ms transcription and GPT-4o Vision for real-time on-screen problem solving. Features "Stealth Mode" and STAR-method story automation. Provides instant, context-aware AI guidance, reducing response latency in technical hurdles and high-pressure negotiations.
+            </p>
+            <div class="tech-stack">
+              <span>Next.js</span><span>OpenAI GPT-4o</span><span>Deepgram (WebSockets)</span><span>Tailwind CSS</span><span>Zustand</span>
+            </div>
+            <div class="project-links has-buttons">
+              <a
+                href="https://realtime-guide.vercel.app/"
+                target="_blank"
+                class="btn"
+                aria-label="Test AI Co-Pilot & Interview Assistant live demo"
+                >Live Test</a
+              >
+            </div>
+          </div>
+
           <!-- Project 1 -->
-          <div class="project-card" data-aos="fade-up">
-            <a href="Project-1.png" class="project-image-link">
-              <img src="Project-1.png" alt="Trading Bot Animation" />
-            </a>
+          <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-media-wrapper">
+              <a href="Project-1.png" class="project-image-link">
+                <img src="logo1.png" class="project-logo" alt="Real-Time Trade Signal Copier Logo" loading="lazy" />
+                <img src="Project-1.png" class="project-dashboard" alt="Real-Time Trade Signal Copier Dashboard" loading="lazy" />
+              </a>
+              <div class="reveal-hint">
+                <span><i class="fas fa-mouse-pointer"></i> UNVEIL PROJECT DATA</span>
+              </div>
+            </div>
             <h3>Real-Time Trade Signal Copier</h3>
             <p>
               An automated desktop application that parses trade signals from
               Telegram and executes them instantly on the cTrader platform.
+              Ensures &lt; 100ms latency for high-frequency execution.
             </p>
             <div class="tech-stack">
               <span>Python</span><span>JavaScript</span><span>cTrader API</span
@@ -100,42 +165,57 @@
             </div>
             <div class="project-links has-buttons">
               <a
-                href="https://github.com/Julio0795/Telegram-Ctrader-SignalCopier/tree/main/COPIER"
+                href="https://github.com/Julio0795/TRADE-COPIER"
                 target="_blank"
                 class="btn"
+                aria-label="View Real-Time Trade Signal Copier code on GitHub"
                 >View Code</a
               >
             </div>
           </div>
 
           <!-- Project 2 -->
-          <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-            <a href="Project-2.png" class="project-image-link">
-              <img src="Project-2.png" alt="Conversation Bot Animation" />
-            </a>
+          <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="project-media-wrapper">
+              <a href="Project-2.png" class="project-image-link">
+                <img src="logo2.png" class="project-logo" alt="AI-Powered WhatsApp Concierge Logo" loading="lazy" />
+                <img src="Project-2.png" class="project-dashboard" alt="AI-Powered WhatsApp Concierge Dashboard" loading="lazy" />
+              </a>
+              <div class="reveal-hint">
+                <span><i class="fas fa-mouse-pointer"></i> UNVEIL PROJECT DATA</span>
+              </div>
+            </div>
             <h3>AI-Powered WhatsApp Concierge</h3>
             <p>
               A smart bot using the ChatGPT API to manage WhatsApp
               conversations, drafting intelligent replies for user approval.
+              Automates 24/7 customer engagement using GPT-4.
             </p>
             <div class="tech-stack">
               <span>Python</span><span>ChatGPT API</span><span>JavaScript</span>
             </div>
             <div class="project-links has-buttons">
               <a
-                href="https://github.com/Julio0795/CHAT-BOT/tree/main/Whatshapp-bot"
+                href="https://github.com/Julio0795/CHAT-BOT"
                 target="_blank"
                 class="btn"
+                aria-label="View AI-Powered WhatsApp Concierge code on GitHub"
                 >View Code</a
               >
             </div>
           </div>
 
           <!-- Project 3 -->
-          <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-            <a href="Project-3.png" class="project-image-link">
-              <img src="Project-3.png" alt="AI Story Generator Animation" />
-            </a>
+          <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="project-media-wrapper">
+              <a href="Project-3.png" class="project-image-link">
+                <img src="logo3.png" class="project-logo" alt="AI-Powered Interactive Story Generator Logo" loading="lazy" />
+                <img src="Project-3.png" class="project-dashboard" alt="AI-Powered Interactive Story Generator Dashboard" loading="lazy" />
+              </a>
+              <div class="reveal-hint">
+                <span><i class="fas fa-mouse-pointer"></i> UNVEIL PROJECT DATA</span>
+              </div>
+            </div>
             <h3>AI-Powered Interactive Story Generator</h3>
             <p>
               A cinematic web app where users collaboratively create unique,
@@ -150,24 +230,26 @@
                 href="https://github.com/Julio0795/AI-Story-generator"
                 target="_blank"
                 class="btn"
+                aria-label="View AI-Powered Interactive Story Generator code on GitHub"
                 >View Code</a
               >
             </div>
           </div>
 
           <!-- Project 4 -->
-          <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-            <a href="Project-4.png" class="project-image-link">
-              <img
-                src="Project-4.png"
-                alt="Power Automate Project"
-                class="image-contain"
-              />
-            </a>
+          <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="project-media-wrapper">
+              <a href="Project-4.png" class="project-image-link">
+                <img src="logo4.png" class="project-logo" alt="Automated Document Processing Pipeline Logo" loading="lazy" />
+                <img src="Project-4.png" class="project-dashboard" alt="Automated Document Processing Pipeline Dashboard" loading="lazy" />
+              </a>
+              <div class="reveal-hint">
+                <span><i class="fas fa-mouse-pointer"></i> UNVEIL PROJECT DATA</span>
+              </div>
+            </div>
             <h3>Automated Document Processing Pipeline</h3>
             <p>
-              An automation that monitors an Exchange server, extracts data from
-              PDF attachments using OCR, and intelligently files the documents.
+              Optimized business workflow reducing manual document processing time by 80% through OCR and BPA. Monitors Exchange server, extracts data from PDF attachments, and intelligently files documents.
             </p>
             <div class="tech-stack">
               <span>Power Automate</span><span>OCR</span><span>MS Exchange</span
@@ -188,6 +270,28 @@
           building a smart chatbot or a high-performance web page, I am driven
           by the challenge of creating tools that make a tangible impact.
         </p>
+        
+        <div class="featured-highlight">
+          <h3>Featured Innovation: Real-Time AI Co-Pilot</h3>
+          <p>
+            My most ambitious work involves bridging the gap between human speech and multimodal AI. I engineered a real-time AI Co-Pilot that utilizes WebSockets and Deepgram to achieve sub-100ms transcription latency. The core challenge was integrating GPT-4o Vision to allow the AI to 'see' and solve on-screen technical problems in real-time while maintaining total privacy through custom-built 'Camouflage Modes.' This project demonstrates my expertise in managing complex state, low-latency data streams, and sophisticated AI prompt engineering.
+          </p>
+        </div>
+        
+        <div class="technical-skills">
+          <h3>Technical Skills</h3>
+          <div class="skill-badges">
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">Next.js</span>
+            <span class="skill-badge">OpenAI API</span>
+            <span class="skill-badge">Power Automate</span>
+            <span class="skill-badge">SQL</span>
+            <span class="skill-badge">Git</span>
+            <span class="skill-badge">WebSockets</span>
+            <span class="skill-badge">Computer Vision</span>
+          </div>
+        </div>
       </section>
 
       <!-- Testimonials Section -->
@@ -278,10 +382,10 @@
         </form>
 
         <div class="footer-social-links">
-          <a href="https://wa.me/50239404618" target="_blank"
+          <a href="https://wa.me/50239404618" target="_blank" aria-label="Contact via WhatsApp"
             ><i class="fab fa-whatsapp"></i> WhatsApp</a
           >
-          <a href="mailto:julio.1995.hidalgo@gmail.com" target="_blank"
+          <a href="mailto:julio.1995.hidalgo@gmail.com" target="_blank" aria-label="Send email"
             ><i class="fa-solid fa-envelope"></i> Email</a
           >
         </div>

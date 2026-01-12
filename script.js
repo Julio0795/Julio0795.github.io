@@ -16,13 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
       breakLines: false,
     })
       .type(
-        "I build custom software solutions that solve real-world problems.",
+        "I build real-time AI Co-Pilots for high-stakes conversations.",
         { delay: 2000 }
       )
       .delete(null, { delay: 1500 })
-      .type("I automate complex business processes.", { delay: 2000 })
+      .type("I automate complex business processes with Power Automate.", { delay: 2000 })
       .delete(null, { delay: 1500 })
-      .type("I bring ideas to life with generative AI.", { delay: 2500 })
+      .type("I bridge the gap between human speech and Generative AI.", { delay: 2500 })
       .go();
   } catch (e) {
     console.error("TypeIt initialization failed:", e);
@@ -39,29 +39,63 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // --- 4. Image Lightbox Initialization (with Close Button) ---
-  document.querySelectorAll(".project-image-link").forEach((link) => {
-    link.addEventListener("click", function (e) {
+  // --- 4. Project Media Reveal System & Lightbox ---
+  document.querySelectorAll(".project-media-wrapper").forEach((wrapper) => {
+    const imageLink = wrapper.querySelector(".project-image-link");
+    const imageUrl = imageLink.getAttribute("href");
+    let isRevealed = false;
+
+    // Add click handler to the wrapper
+    wrapper.addEventListener("click", function (e) {
       e.preventDefault();
-      const imageUrl = this.getAttribute("href");
 
-      // Create the lightbox instance with an onShow callback
-      const instance = basicLightbox.create(`<img src="${imageUrl}">`, {
-        onShow: (instance) => {
-          // Create a button element
-          const closeButton = document.createElement("button");
-          closeButton.innerHTML = "×"; // The 'times' character
-          closeButton.className = "lightbox-close-button";
+      if (!isRevealed) {
+        // First click: Reveal the dashboard
+        wrapper.classList.add("is-revealed");
+        isRevealed = true;
 
-          // Tell the button to close the lightbox when clicked
-          closeButton.onclick = instance.close;
+        // Camera Flash effect: white overlay flash for 0.1s
+        const cameraFlash = document.createElement("div");
+        cameraFlash.style.cssText = `
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #ffffff;
+          pointer-events: none;
+          z-index: 15;
+          opacity: 1;
+          transition: opacity 0.1s ease-out;
+        `;
 
-          // Add the button to the lightbox element
-          instance.element().appendChild(closeButton);
-        },
-      });
+        wrapper.appendChild(cameraFlash);
 
-      instance.show();
+        // Fade out the flash after 0.1s
+        setTimeout(() => {
+          cameraFlash.style.opacity = "0";
+          // Remove element after transition completes
+          setTimeout(() => {
+            if (cameraFlash.parentNode) {
+              cameraFlash.parentNode.removeChild(cameraFlash);
+            }
+          }, 100);
+        }, 10);
+      } else {
+        // Second click: Open lightbox
+        const instance = basicLightbox.create(`<img src="${imageUrl}">`, {
+          onShow: (instance) => {
+            // Create a button element
+            const closeButton = document.createElement("button");
+            closeButton.innerHTML = "×";
+            closeButton.className = "lightbox-close-button";
+            closeButton.onclick = instance.close;
+            instance.element().appendChild(closeButton);
+          },
+        });
+
+        instance.show();
+      }
     });
   });
 
