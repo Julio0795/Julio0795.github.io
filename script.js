@@ -70,13 +70,28 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // --- 3. Smooth Scrolling for Navigation Links ---
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const targetElement = document.querySelector(this.getAttribute("href"));
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
+  document.querySelectorAll('a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+
+      // ONLY handle internal links starting with #
+      if (href && href.startsWith('#') && href !== '#') {
+        e.preventDefault();
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
+          // If using Lenis (Smooth Scroll)
+          if (typeof lenis !== 'undefined') {
+            lenis.scrollTo(targetElement);
+          } else {
+            // Fallback to native smooth scroll
+            targetElement.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        }
       }
+      // If it's a mailto or WhatsApp link, DO NOT preventDefault. 
+      // Let the browser handle it naturally.
     });
   });
 
