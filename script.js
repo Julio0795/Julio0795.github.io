@@ -57,13 +57,13 @@ document.addEventListener("DOMContentLoaded", function () {
       breakLines: false,
     })
       .type(
-        "I build real-time AI Co-Pilots for high-stakes conversations.",
+        "I build AI-powered automations that eliminate manual work.",
         { delay: 2000 }
       )
       .delete(null, { delay: 1500 })
       .type("I automate complex business processes with Power Automate.", { delay: 2000 })
       .delete(null, { delay: 1500 })
-      .type("I bridge the gap between human speech and Generative AI.", { delay: 2500 })
+      .type("I integrate AI into real business workflows that actually ship.", { delay: 2500 })
       .go();
   } catch (e) {
     console.error("TypeIt initialization failed:", e);

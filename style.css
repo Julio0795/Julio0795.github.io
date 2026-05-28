@@ -865,7 +865,6 @@ footer p {
    ========================================================================== */
 
 #testimonials {
-  display: none; /* Temporarily hidden until real testimonials are available */
   padding: 4rem 0;
   background: var(--bg-dark);
   position: relative;
