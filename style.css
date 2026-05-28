@@ -330,7 +330,8 @@ nav a:hover {
 
 /* --- Projects Section --- */
 #projects,
-#about {
+#about,
+#testimonials {
   padding: 4rem 0;
   position: relative;
   z-index: 2;
@@ -864,36 +865,10 @@ footer p {
    5. Testimonials Section
    ========================================================================== */
 
-#testimonials {
-  padding: 4rem 0;
-  background: var(--bg-dark);
-  position: relative;
-  z-index: 2;
-}
-
-.testimonials-container {
-  position: relative;
+.testimonials-single {
   max-width: 800px;
   margin: 0 auto;
-  padding: 1.5rem 2rem; /* Increased top padding for hover effect */
-}
-
-.testimonials-wrapper {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.testimonial-card {
-  min-width: 100%;
-  opacity: 0;
-  transform: translateX(100px);
-  transition: all 0.5s ease-in-out;
   padding: 0 1rem;
-}
-
-.testimonial-card.active {
-  opacity: 1;
-  transform: translateX(0);
 }
 
 .testimonial-content {
@@ -1232,7 +1207,8 @@ footer p {
     margin-bottom: 2rem;
   }
 
-  #about {
+  #about,
+  #testimonials {
     padding: 3rem 0;
   }
 
@@ -1256,7 +1232,7 @@ footer p {
     padding: 3px 10px;
   }
 
-  .testimonials-container {
+  .testimonials-single {
     max-width: 100%;
     padding: 0 1rem;
   }
@@ -1535,7 +1511,8 @@ footer p {
     margin-bottom: 1.5rem;
   }
 
-  #about {
+  #about,
+  #testimonials {
     padding: 2rem 0;
   }
 

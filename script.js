@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (targetElement) {
           // If using Lenis (Smooth Scroll)
           if (typeof lenis !== 'undefined') {
-            lenis.scrollTo(targetElement);
+            lenis.scrollTo(targetElement, { offset: -80 });
           } else {
             // Fallback to native smooth scroll
             targetElement.scrollIntoView({
@@ -208,15 +208,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // --- 5. Testimonials Carousel Functionality ---
+  // --- 5. Testimonials Carousel Functionality (multi-slide only) ---
   const testimonialsWrapper = document.querySelector(".testimonials-wrapper");
   const testimonialCards = document.querySelectorAll(".testimonial-card");
-  const dots = document.querySelectorAll(".dot");
-  const prevBtn = document.querySelector(".prev-btn");
-  const nextBtn = document.querySelector(".next-btn");
+  const dots = document.querySelectorAll(".testimonial-dots .dot");
+  const prevBtn = document.querySelector(".testimonial-nav.prev-btn");
+  const nextBtn = document.querySelector(".testimonial-nav.next-btn");
 
-  // Only initialize if testimonials section exists
-  if (testimonialsWrapper && testimonialCards.length > 0) {
+  // Only initialize carousel when multiple slides exist
+  if (testimonialsWrapper && testimonialCards.length > 1) {
     let currentSlide = 0;
     const totalSlides = testimonialCards.length;
 
@@ -277,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // Keyboard navigation support
+    // Keyboard navigation support (multi-slide carousel only)
     document.addEventListener("keydown", function (e) {
       if (e.key === "ArrowLeft") {
         prevSlide();
