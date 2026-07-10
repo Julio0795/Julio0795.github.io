@@ -56,13 +56,14 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Vanta.js and Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
   </head>
 
   <body>
-    <div id="vanta-canvas"></div>
+    <div class="aurora-bg" aria-hidden="true">
+      <div class="aurora-blob aurora-blob-1"></div>
+      <div class="aurora-blob aurora-blob-2"></div>
+      <div class="aurora-blob aurora-blob-3"></div>
+    </div>
     <div class="grain-overlay"></div>
     <!-- =================================================================== -->
     <!-- Navigation Bar                                                      -->
@@ -120,13 +121,13 @@
       <section id="projects">
         <h2 class="reveal-text">My Projects</h2>
         <div class="project-grid">
-          <!-- Project 5 -->
+          <!-- Project 4 — Automated Document Processing Pipeline -->
           <div class="project-card" data-aos="fade-up" data-aos-delay="0">
             <div class="card-glow"></div>
             <div class="project-media-wrapper">
-              <a href="Project-5.png" class="project-image-link">
-                <img src="logo5.png" class="project-logo" alt="AI Co-Pilot Logo" loading="lazy" />
-                <img src="Project-5.png" class="project-dashboard" alt="AI Co-Pilot Dashboard" loading="lazy" />
+              <a href="Project-4.png" class="project-image-link">
+                <img src="logo4.png" class="project-logo" alt="Automated Document Processing Pipeline Logo" loading="lazy" />
+                <img src="Project-4.png" class="project-dashboard" alt="Automated Document Processing Pipeline Dashboard" loading="lazy" />
               </a>
               <div class="reveal-hint">
                 <span><i class="fas fa-mouse-pointer"></i> View Full Dashboard</span>
@@ -136,20 +137,45 @@
                 <i class="fas fa-compress-alt expand-icon-hide"></i>
               </div>
             </div>
-            <h3>AI Co-Pilot & Interview Assistant <span class="badge-verified"><i class="fas fa-check-circle"></i> Flagship Project</span></h3>
+            <h3>Automated Document Processing Pipeline <span class="badge-verified"><i class="fas fa-check-circle"></i> Flagship Project</span></h3>
             <p>
-              A high-stakes conversational coach using Deepgram WebSockets for &lt;100ms transcription and GPT-4o Vision for real-time on-screen problem solving. Features "Stealth Mode" and STAR-method story automation. Provides instant, context-aware AI guidance, reducing response latency in technical hurdles and high-pressure negotiations.
+              Optimized business workflow reducing manual document processing time by 80% through OCR and BPA. Monitors Exchange server, extracts data from PDF attachments, and intelligently files documents.
             </p>
             <div class="tech-stack">
-              <span>Next.js</span><span>OpenAI GPT-4o</span><span>Deepgram (WebSockets)</span><span>Tailwind CSS</span><span>Zustand</span>
-            </div>
-            <div class="project-links has-buttons">
-              <button class="btn btn-request-access" data-project="AI Co-Pilot Assistant">Request Live Demo</button>
+              <span>Power Automate</span><span>OCR</span><span>MS Exchange</span
+              ><span>BPA</span>
             </div>
           </div>
 
-          <!-- Project 1 -->
+          <!-- Project 2 — AI-Powered WhatsApp Concierge -->
           <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-glow"></div>
+            <div class="project-media-wrapper">
+              <a href="Project-2.png" class="project-image-link">
+                <img src="logo2.png" class="project-logo" alt="AI-Powered WhatsApp Concierge Logo" loading="lazy" />
+                <img src="Project-2.png" class="project-dashboard" alt="AI-Powered WhatsApp Concierge Dashboard" loading="lazy" />
+              </a>
+              <div class="reveal-hint">
+                <span><i class="fas fa-mouse-pointer"></i> View Full Dashboard</span>
+              </div>
+              <div class="expand-icon">
+                <i class="fas fa-expand-alt expand-icon-show"></i>
+                <i class="fas fa-compress-alt expand-icon-hide"></i>
+              </div>
+            </div>
+            <h3>AI-Powered WhatsApp Concierge</h3>
+            <p>
+              A smart bot using the ChatGPT API to manage WhatsApp
+              conversations, drafting intelligent replies for user approval.
+              Automates 24/7 customer engagement using GPT-4.
+            </p>
+            <div class="tech-stack">
+              <span>Python</span><span>ChatGPT API</span><span>JavaScript</span>
+            </div>
+          </div>
+
+          <!-- Project 1 — Real-Time Trade Signal Copier -->
+          <div class="project-card" data-aos="fade-up" data-aos-delay="200">
             <div class="card-glow"></div>
             <div class="project-media-wrapper">
               <a href="Project-1.png" class="project-image-link">
@@ -174,18 +200,15 @@
               <span>Python</span><span>JavaScript</span><span>cTrader API</span
               ><span>Automation</span>
             </div>
-            <div class="project-links has-buttons">
-              <button class="btn btn-request-access" data-project="Real-Time Trade Signal Copier">Request Live Demo</button>
-            </div>
           </div>
 
-          <!-- Project 2 -->
-          <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <!-- Project 5 — AI Co-Pilot & Interview Assistant -->
+          <div class="project-card" data-aos="fade-up" data-aos-delay="300">
             <div class="card-glow"></div>
             <div class="project-media-wrapper">
-              <a href="Project-2.png" class="project-image-link">
-                <img src="logo2.png" class="project-logo" alt="AI-Powered WhatsApp Concierge Logo" loading="lazy" />
-                <img src="Project-2.png" class="project-dashboard" alt="AI-Powered WhatsApp Concierge Dashboard" loading="lazy" />
+              <a href="Project-5.png" class="project-image-link">
+                <img src="logo5.png" class="project-logo" alt="AI Co-Pilot Logo" loading="lazy" />
+                <img src="Project-5.png" class="project-dashboard" alt="AI Co-Pilot Dashboard" loading="lazy" />
               </a>
               <div class="reveal-hint">
                 <span><i class="fas fa-mouse-pointer"></i> View Full Dashboard</span>
@@ -195,22 +218,17 @@
                 <i class="fas fa-compress-alt expand-icon-hide"></i>
               </div>
             </div>
-            <h3>AI-Powered WhatsApp Concierge</h3>
+            <h3>AI Co-Pilot & Interview Assistant</h3>
             <p>
-              A smart bot using the ChatGPT API to manage WhatsApp
-              conversations, drafting intelligent replies for user approval.
-              Automates 24/7 customer engagement using GPT-4.
+              A high-stakes conversational coach using Deepgram WebSockets for &lt;100ms transcription and GPT-4o Vision for real-time on-screen problem solving. Features "Stealth Mode" and STAR-method story automation. Provides instant, context-aware AI guidance, reducing response latency in technical hurdles and high-pressure negotiations.
             </p>
             <div class="tech-stack">
-              <span>Python</span><span>ChatGPT API</span><span>JavaScript</span>
-            </div>
-            <div class="project-links has-buttons">
-              <button class="btn btn-request-access" data-project="AI-Powered WhatsApp Concierge">Request Live Demo</button>
+              <span>Next.js</span><span>OpenAI GPT-4o</span><span>Deepgram (WebSockets)</span><span>Tailwind CSS</span><span>Zustand</span>
             </div>
           </div>
 
-          <!-- Project 3 -->
-          <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+          <!-- Project 3 — AI-Powered Interactive Story Generator -->
+          <div class="project-card" data-aos="fade-up" data-aos-delay="400">
             <div class="card-glow"></div>
             <div class="project-media-wrapper">
               <a href="Project-3.png" class="project-image-link">
@@ -227,40 +245,11 @@
             </div>
             <h3>AI-Powered Interactive Story Generator</h3>
             <p>
-              An AI automation that generates unique, illustrated stories on demand — orchestrating multiple generative AI models (text and image) into a single seamless creative pipeline. Demonstrates multi-model AI workflow design end to end.
+              A creative web app that orchestrates multiple generative AI models — text and image — into a single seamless pipeline, generating unique illustrated stories on demand. Demonstrates multi-model AI orchestration, prompt chaining, and managing sequential AI calls end to end.
             </p>
             <div class="tech-stack">
               <span>Next.js</span><span>OpenAI API</span><span>TypeScript</span
               ><span>Framer Motion</span>
-            </div>
-            <div class="project-links has-buttons">
-              <button class="btn btn-request-access" data-project="AI-Powered Interactive Story Generator">Request Live Demo</button>
-            </div>
-          </div>
-
-          <!-- Project 4 -->
-          <div class="project-card" data-aos="fade-up" data-aos-delay="400">
-            <div class="card-glow"></div>
-            <div class="project-media-wrapper">
-              <a href="Project-4.png" class="project-image-link">
-                <img src="logo4.png" class="project-logo" alt="Automated Document Processing Pipeline Logo" loading="lazy" />
-                <img src="Project-4.png" class="project-dashboard" alt="Automated Document Processing Pipeline Dashboard" loading="lazy" />
-              </a>
-              <div class="reveal-hint">
-                <span><i class="fas fa-mouse-pointer"></i> View Full Dashboard</span>
-              </div>
-              <div class="expand-icon">
-                <i class="fas fa-expand-alt expand-icon-show"></i>
-                <i class="fas fa-compress-alt expand-icon-hide"></i>
-              </div>
-            </div>
-            <h3>Automated Document Processing Pipeline</h3>
-            <p>
-              Optimized business workflow reducing manual document processing time by 80% through OCR and BPA. Monitors Exchange server, extracts data from PDF attachments, and intelligently files documents.
-            </p>
-            <div class="tech-stack">
-              <span>Power Automate</span><span>OCR</span><span>MS Exchange</span
-              ><span>BPA</span>
             </div>
           </div>
         </div>
@@ -268,30 +257,35 @@
 
       <!-- About Section -->
       <section id="about">
-        <h2 class="reveal-text">About Me</h2>
-        <p>
-          I'm an automation specialist who builds systems and AI-powered tools that save businesses time, cut errors, and let teams scale without adding headcount. My background started in IT support — Tier 1 and Tier 2 — which taught me how businesses actually run and where the real friction lives before I ever build a solution. Today I design automations and integrate AI into real workflows: from intelligent document pipelines to real-time AI assistants. I care about one thing above all — solutions that get used and deliver measurable results.
-        </p>
-        
-        <div class="featured-highlight">
-          <h3>Featured Innovation: Real-Time AI Co-Pilot</h3>
+        <div class="glass-panel about-panel">
+          <h2 class="reveal-text">About Me</h2>
           <p>
-            My most ambitious work involves bridging the gap between human speech and multimodal AI. I engineered a real-time AI Co-Pilot that utilizes WebSockets and Deepgram to achieve sub-100ms transcription latency. The core challenge was integrating GPT-4o Vision to allow the AI to 'see' and solve on-screen technical problems in real-time while maintaining total privacy through custom-built 'Camouflage Modes.' This project demonstrates my expertise in managing complex state, low-latency data streams, and sophisticated AI prompt engineering.
+            I'm an automation specialist who builds systems and AI-powered tools that save businesses time, cut errors, and let teams scale without adding headcount. My background started in IT support — Tier 1 and Tier 2 — which taught me how businesses actually run and where the real friction lives before I ever build a solution. Today I design automations and integrate AI into real workflows: from intelligent document pipelines to real-time AI assistants. I care about one thing above all — solutions that get used and deliver measurable results.
           </p>
-        </div>
-        
-        <div class="technical-skills">
-          <h3>Technical Skills</h3>
-          <div class="skill-badges">
-            <span class="skill-badge">Power Automate</span>
-            <span class="skill-badge">Python</span>
-            <span class="skill-badge">OpenAI API</span>
-            <span class="skill-badge">AI Integration</span>
-            <span class="skill-badge">Workflow Automation</span>
-            <span class="skill-badge">JavaScript</span>
-            <span class="skill-badge">SQL</span>
-            <span class="skill-badge">Git</span>
-            <span class="skill-badge">WebSockets</span>
+          <p>
+            I build using an AI-native workflow: I direct AI tools like Cursor and Claude to write and structure code, while I own the architecture, the problem-solving, and the decisions that make a system actually work for the business using it. I'm actively studying programming fundamentals and Python alongside this, and I learn automation platforms as I go — because I want to deepen what I can build directly over time. Right now my strength is knowing what to build, how to direct AI to build it well, and how to make sure it holds up in production.
+          </p>
+          
+          <div class="featured-highlight">
+            <h3>Featured Innovation: Automated Document Processing Pipeline</h3>
+            <p>
+              My core focus is automation that eliminates manual work entirely. The Document Processing Pipeline is the clearest example: it monitors an inbox, applies OCR to extract data from incoming PDFs, and files documents automatically based on content — removing a repetitive, error-prone task from a real business workflow. I bring the same systems-thinking to every project, including my AI Co-Pilot, which uses the same foundations — live data streams, AI-driven decisioning, and structured output — applied to a real-time assistant instead of a background process.
+            </p>
+          </div>
+          
+          <div class="technical-skills">
+            <h3>Technical Skills</h3>
+            <div class="skill-badges">
+              <span class="skill-badge">Power Automate</span>
+              <span class="skill-badge">Python</span>
+              <span class="skill-badge">OpenAI API</span>
+              <span class="skill-badge">AI Integration</span>
+              <span class="skill-badge">Workflow Automation</span>
+              <span class="skill-badge">JavaScript</span>
+              <span class="skill-badge">SQL</span>
+              <span class="skill-badge">Git</span>
+              <span class="skill-badge">WebSockets</span>
+            </div>
           </div>
         </div>
       </section>
@@ -314,34 +308,6 @@
     </main>
 
     <!-- =================================================================== -->
-    <!-- Request Access Modal                                                -->
-    <!-- =================================================================== -->
-    <div id="request-modal" class="modal">
-      <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <div class="modal-header">
-          <i class="fas fa-lock-alt"></i>
-          <h3>Request Live Demo</h3>
-          <p>Request a live walkthrough of this project below:</p>
-        </div>
-        <div id="modal-project-name" class="project-name-display"></div>
-        <div class="request-options">
-          <a href="#" id="ws-request" class="request-card whatsapp">
-            <i class="fab fa-whatsapp"></i>
-            <span>WhatsApp</span>
-            <small>Instant Response</small>
-          </a>
-          <a href="#" id="email-request" class="request-card email">
-            <i class="fas fa-envelope"></i>
-            <span>Email</span>
-            <small>Professional Inquiry</small>
-          </a>
-        </div>
-        <p class="privacy-note"><i class="fas fa-shield-check"></i> Secure & Private Access</p>
-      </div>
-    </div>
-
-    <!-- =================================================================== -->
     <!-- Footer & Contact Section                                            -->
     <!-- =================================================================== -->
     <footer id="contact">
@@ -351,11 +317,11 @@
           Looking to automate a workflow, integrate AI into your business, or eliminate a manual process? Let's talk.
         </p>
 
-        <!-- Replace with your actual Formspree URL -->
         <form
           action="https://formspree.io/f/xnngyzvl"
           method="POST"
           class="contact-form"
+          id="contact-form"
         >
           <div class="form-group">
             <input type="text" name="name" placeholder="Your Name" required />
@@ -373,15 +339,58 @@
             required
           ></textarea>
           <button type="submit" class="btn">Send Message</button>
+          <p class="form-success" id="form-success" hidden>Message sent — thanks!</p>
         </form>
 
         <div class="footer-social-links">
-          <a href="https://wa.me/50239404618" target="_blank" aria-label="Contact via WhatsApp"
+          <a
+            href="https://wa.me/50239404618?text=Hi%20Julio!%20I%20came%20across%20your%20portfolio%20and%20I%27d%20like%20to%20talk%20about%20an%20automation%20or%20AI%20project.%20Are%20you%20available%20to%20connect%3F"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contact via WhatsApp"
             ><i class="fab fa-whatsapp"></i> WhatsApp</a
           >
-          <a href="mailto:julio.1995.hidalgo@gmail.com" target="_blank" aria-label="Send email"
-            ><i class="fa-solid fa-envelope"></i> Email</a
-          >
+          <div class="email-menu-wrap">
+            <button
+              type="button"
+              class="email-menu-trigger"
+              id="email-menu-btn"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="email-menu"
+            >
+              <i class="fa-solid fa-envelope"></i> Email
+            </button>
+            <div class="email-menu" id="email-menu" role="menu" hidden>
+              <button type="button" class="email-menu-item" role="menuitem" data-email-action="copy">
+                Copy email address
+              </button>
+              <a
+                class="email-menu-item"
+                role="menuitem"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=julio.1995.hidalgo@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Gmail</a
+              >
+              <a
+                class="email-menu-item"
+                role="menuitem"
+                href="https://outlook.live.com/mail/0/deeplink/compose?to=julio.1995.hidalgo@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Outlook</a
+              >
+              <a
+                class="email-menu-item"
+                role="menuitem"
+                href="https://compose.mail.yahoo.com/?to=julio.1995.hidalgo@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Yahoo</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </footer>

@@ -14,34 +14,6 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Detect mobile device
-  const isMobile = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768;
-
-  // --- 0. Vanta.js NET Background Initialization ---
-  try {
-    if (typeof VANTA !== 'undefined' && VANTA.NET) {
-      // Optimize for mobile: reduce points and spacing to save battery/CPU
-      const vantaConfig = {
-        el: "#vanta-canvas",
-        mouseControls: !isMobile,
-        touchControls: !isMobile,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: 0x00aaff,
-        backgroundColor: 0x050505,
-        points: isMobile ? 6.00 : 12.00,
-        maxDistance: isMobile ? 15.00 : 22.00,
-        spacing: isMobile ? 20.00 : 16.00
-      };
-      VANTA.NET(vantaConfig);
-    }
-  } catch (e) {
-    console.error("VANTA.NET initialization failed:", e);
-  }
-
   // --- 1. AOS (Animate On Scroll) Initialization ---
   try {
     AOS.init({ duration: 800, once: true, offset: 100 });
@@ -61,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { delay: 2000 }
       )
       .delete(null, { delay: 1500 })
-      .type("I automate complex business processes with Power Automate.", { delay: 2000 })
+      .type("I build automations with automation platforms like Power Automate or with Python.", { delay: 2000 })
       .delete(null, { delay: 1500 })
       .type("I integrate AI into real business workflows that actually ship.", { delay: 2500 })
       .go();
@@ -344,172 +316,127 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // --- 7. Request Access Modal Functionality ---
-  const requestModal = document.getElementById("request-modal");
-  const modalProjectName = document.getElementById("modal-project-name");
-  const closeModalBtn = document.querySelector(".close-modal");
-  const requestAccessButtons = document.querySelectorAll(".btn-request-access");
-  const whatsappBtn = document.getElementById("ws-request");
-  const emailBtn = document.getElementById("email-request");
+  // --- 7. Email Menu + Contact Form ---
+  const CONTACT_EMAIL = "julio.1995.hidalgo@gmail.com";
+  const emailMenuBtn = document.getElementById("email-menu-btn");
+  const emailMenu = document.getElementById("email-menu");
 
-  // Function to generate WhatsApp URL with encoded message
-  function generateWhatsAppURL(projectName) {
-    const message = `Hi Julio! I'm interested in a live demonstration of your project: ${projectName}. Please let me know when you're available for a brief walkthrough.`;
-    const encodedMessage = encodeURIComponent(message);
-    return `https://wa.me/50239404618?text=${encodedMessage}`;
+  function setEmailMenuOpen(isOpen) {
+    if (!emailMenuBtn || !emailMenu) return;
+    emailMenu.hidden = !isOpen;
+    emailMenuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
   }
 
-  // Function to generate Email URL with encoded subject and body
-  function generateEmailURL(projectName) {
-    const subject = `Demo Request: ${projectName}`;
-    const body = `Hi Julio,\r\n\r\nI was exploring your portfolio and I am very interested in seeing a live demonstration of "${projectName}".\r\n\r\nLet's connect!`;
-    const encodedSubject = encodeURIComponent(subject);
-    const encodedBody = encodeURIComponent(body);
-    return `mailto:julio.1995.hidalgo@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
-  }
-
-  // Function to open modal and set up links
-  function openModal(projectName) {
-    // Update project name display
-    if (modalProjectName) {
-      modalProjectName.textContent = projectName;
-    }
-
-    // Update WhatsApp link with project-specific message
-    if (whatsappBtn) {
-      whatsappBtn.href = generateWhatsAppURL(projectName);
-    }
-
-    // Update Email link with project-specific subject and body
-    if (emailBtn) {
-      emailBtn.href = generateEmailURL(projectName);
-    }
-
-    // Show modal
-    if (requestModal) {
-      requestModal.classList.add("active");
-      document.body.style.overflow = "hidden"; // Prevent background scrolling
-    }
-  }
-
-  // Function to close modal
-  function closeModal() {
-    if (requestModal) {
-      requestModal.classList.remove("active");
-      document.body.style.overflow = ""; // Restore scrolling
-    }
-  }
-
-  // Add click handlers to all request access buttons
-  requestAccessButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      e.preventDefault();
-      const projectName = button.getAttribute("data-project") || "Project";
-      openModal(projectName);
-    });
-  });
-
-  // Close modal when close button is clicked
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener("click", (e) => {
-      e.preventDefault();
+  if (emailMenuBtn && emailMenu) {
+    emailMenuBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      closeModal();
+      setEmailMenuOpen(emailMenu.hidden);
+    });
+
+    emailMenu.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+
+    document.addEventListener("click", () => {
+      setEmailMenuOpen(false);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        setEmailMenuOpen(false);
+      }
+    });
+
+    const copyBtn = emailMenu.querySelector('[data-email-action="copy"]');
+    if (copyBtn) {
+      copyBtn.addEventListener("click", async () => {
+        const originalText = copyBtn.textContent;
+        try {
+          await navigator.clipboard.writeText(CONTACT_EMAIL);
+          copyBtn.textContent = "Copied!";
+          copyBtn.classList.add("is-copied");
+        } catch (err) {
+          // Fallback for older browsers
+          const temp = document.createElement("textarea");
+          temp.value = CONTACT_EMAIL;
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand("copy");
+          document.body.removeChild(temp);
+          copyBtn.textContent = "Copied!";
+          copyBtn.classList.add("is-copied");
+        }
+        setTimeout(() => {
+          copyBtn.textContent = originalText;
+          copyBtn.classList.remove("is-copied");
+          setEmailMenuOpen(false);
+        }, 1200);
+      });
+    }
+
+    emailMenu.querySelectorAll("a.email-menu-item").forEach((link) => {
+      link.addEventListener("click", () => {
+        setEmailMenuOpen(false);
+      });
     });
   }
 
-  // Close modal when clicking outside the modal content
-  if (requestModal) {
-    requestModal.addEventListener("click", (e) => {
-      // Only close if clicking directly on the modal background, not on modal content
-      if (e.target === requestModal) {
-        closeModal();
+  const contactForm = document.getElementById("contact-form");
+  const formSuccess = document.getElementById("form-success");
+
+  function showFormSuccess() {
+    if (!formSuccess) return;
+    formSuccess.hidden = false;
+    setTimeout(() => {
+      formSuccess.hidden = true;
+    }, 5000);
+  }
+
+  // Handle Formspree redirect-back confirmation
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("submitted") === "1") {
+    if (contactForm) contactForm.reset();
+    showFormSuccess();
+    const cleanUrl = window.location.pathname + window.location.hash;
+    window.history.replaceState({}, document.title, cleanUrl);
+  }
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+      }
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: new FormData(contactForm),
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          contactForm.reset();
+          showFormSuccess();
+        } else {
+          alert("Something went wrong. Please try again or email me directly.");
+        }
+      } catch (err) {
+        alert("Something went wrong. Please try again or email me directly.");
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send Message";
+        }
       }
     });
   }
 
-  // Prevent modal from closing when clicking inside modal content
-  const modalContent = document.querySelector(".modal-content");
-  if (modalContent) {
-    modalContent.addEventListener("click", (e) => {
-      e.stopPropagation();
-    });
-  }
-
-  // Close modal when Escape key is pressed
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && requestModal && requestModal.classList.contains("active")) {
-      closeModal();
-    }
-  });
-
-  // --- 8. Custom Cursor System (Desktop only) ---
-  if (!isMobile) {
-    // Create custom cursor element
-    const customCursor = document.createElement("div");
-    customCursor.className = "custom-cursor";
-    document.body.appendChild(customCursor);
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let cursorX = mouseX;
-    let cursorY = mouseY;
-    let isHovering = false;
-
-    // Initialize cursor position
-    customCursor.style.left = cursorX + "px";
-    customCursor.style.top = cursorY + "px";
-
-    // Track mouse position
-    document.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-
-    // Smooth cursor follow animation using requestAnimationFrame
-    function animateCursor() {
-      // Calculate distance between cursor and mouse
-      const dx = mouseX - cursorX;
-      const dy = mouseY - cursorY;
-      
-      // Apply lag (ease out effect) - adjust the multiplier (0.15) for more/less lag
-      cursorX += dx * 0.15;
-      cursorY += dy * 0.15;
-      
-      // Update cursor position
-      customCursor.style.left = cursorX + "px";
-      customCursor.style.top = cursorY + "px";
-      
-      requestAnimationFrame(animateCursor);
-    }
-
-    // Start animation
-    animateCursor();
-
-    // Elements that should trigger cursor expansion
-    const hoverElements = document.querySelectorAll(
-      "button, .btn, .project-logo, a, .project-card, .request-card, .nav-links a"
-    );
-
-    hoverElements.forEach((element) => {
-      element.addEventListener("mouseenter", () => {
-        isHovering = true;
-        customCursor.classList.add("expanded");
-      });
-
-      element.addEventListener("mouseleave", () => {
-        isHovering = false;
-        customCursor.classList.remove("expanded");
-      });
-    });
-
-    // Hide default cursor on desktop
-    document.body.style.cursor = "none";
-  }
-
-  // --- 9. Magnetic Button Effect ---
+  // --- 8. Magnetic Button Effect ---
   const magneticButtons = document.querySelectorAll(
-    ".btn-request-access, .hero-btns .btn, .social-links a"
+    ".hero-btns .btn, .social-links a"
   );
 
   magneticButtons.forEach((button) => {
@@ -576,7 +503,7 @@ document.addEventListener("DOMContentLoaded", function () {
     button.addEventListener("mouseleave", handleMouseLeave);
   });
 
-  // --- 10. GSAP Text Reveal Animation ---
+  // --- 9. GSAP Text Reveal Animation ---
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
@@ -628,7 +555,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // --- 11. Card Glow Effect ---
+  // --- 10. Card Glow Effect ---
   const projectCards = document.querySelectorAll('.project-card');
 
   projectCards.forEach((card) => {
